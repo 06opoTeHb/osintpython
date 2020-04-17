@@ -8,11 +8,8 @@ win.title("OSINT Dashboard")
 win.geometry('300x350')
 # make window not resizable
 win.resizable(0, 0)
-v = tk.IntVar()
-
-
-def showChoice():
-    print(v.get())
+rv = tk.IntVar()
+tv = tk.IntVar()
 
 
 #reddit fields assigned to variables outside of reddittext() method
@@ -20,11 +17,11 @@ r1 = tk.Label(win, text="Search")
 r2 = tk.Label(win, text="Subreddit")
 r3 = tk.Label(win, text="")
 r4 = tk.Label(win, text="Sort results by")
-r5 = tk.Radiobutton(win, text="Hot", variable=v, value=1, command=showChoice())
-r6 = tk.Radiobutton(win, text="New", variable=v, value=2, command=showChoice())
-r7 = tk.Radiobutton(win, text="Top", variable=v, value=3, command=showChoice())
-r8 = tk.Radiobutton(win, text="Controversial", variable=v, value=4, command=showChoice())
-r9 = tk.Radiobutton(win, text="Rising", variable=v, value=5, command=showChoice())
+r5 = tk.Radiobutton(win, text="Hot", variable=rv, value=1, command=rv.set(1))
+r6 = tk.Radiobutton(win, text="New", variable=rv, value=2, command=rv.set(2))
+r7 = tk.Radiobutton(win, text="Top", variable=rv, value=3, command=rv.set(3))
+r8 = tk.Radiobutton(win, text="Controversial", variable=rv, value=4, command=rv.set(4))
+r9 = tk.Radiobutton(win, text="Rising", variable=rv, value=5, command=rv.set(5))
 e1 = tk.Entry(win)
 e2 = tk.Entry(win)
 submitreddit = tk.Button(win, text="Submit")
@@ -57,11 +54,11 @@ def reddittext():
 
 #twitter fields assigned to variables outside of twittertext() method
 t1 = tk.Label(win, text="Search")
-e1 = tk.Entry(win)
+te1 = tk.Entry(win)
 t2 = tk.Label(win, text="")
 t5 = tk.Label(win, text="Sort results by")
-t3 = tk.Radiobutton(win, text="New", variable=v, value=1)
-t4 = tk.Radiobutton(win, text="Top", variable=v, value=2)
+t3 = tk.Radiobutton(win, text="New", variable=tv, value=1, command=tv.set(1))
+t4 = tk.Radiobutton(win, text="Top", variable=tv, value=2, command=tv.set(2))
 submittwit = tk.Button(win, text="Submit")
 
 
@@ -82,8 +79,7 @@ def twittertext():
     submitreddit.grid_forget()
     #places twitter fields on the window
     t1.grid(row=3, column=1)
-    e1.grid(row=3, column=2)
-    e1.grid(row=3, column=2)
+    te1.grid(row=3, column=2)
     t2.grid(row=4, column=1)
     t5.grid(row=5, column=1)
     t3.grid(row=6, column=1)
