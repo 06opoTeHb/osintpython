@@ -75,7 +75,3 @@ def twitter(term, sort):
     # This is the output of how many quests we have left. Not necessary to keep, but good info to have for debugging
     # purposes.
     print(data['resources']['search'])
-
-
-# Example Function Call with parameters - Term Searched (String), Sort by (String - mixed, recent, popular)
-twitter("COVID-19", "recent")
