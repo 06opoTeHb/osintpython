@@ -1,6 +1,7 @@
 # osint project dashboard
 # Developed by Matt Hofmann, Simeon Wilson, and Zachary Fleck
 import tkinter as tk
+from osintpython.reddit import redditsearch
 
 # initialize frame
 win = tk.Tk()
@@ -8,7 +9,7 @@ win.title("OSINT Dashboard")
 win.geometry('300x350')
 # make window not resizable
 win.resizable(0, 0)
-rv = tk.IntVar()
+rv = tk.StringVar()
 tv = tk.IntVar()
 
 
@@ -17,14 +18,16 @@ r1 = tk.Label(win, text="Search")
 r2 = tk.Label(win, text="Subreddit")
 r3 = tk.Label(win, text="")
 r4 = tk.Label(win, text="Sort results by")
-r5 = tk.Radiobutton(win, text="Hot", variable=rv, value=1, command=rv.set(1))
-r6 = tk.Radiobutton(win, text="New", variable=rv, value=2, command=rv.set(2))
-r7 = tk.Radiobutton(win, text="Top", variable=rv, value=3, command=rv.set(3))
-r8 = tk.Radiobutton(win, text="Controversial", variable=rv, value=4, command=rv.set(4))
-r9 = tk.Radiobutton(win, text="Rising", variable=rv, value=5, command=rv.set(5))
-e1 = tk.Entry(win)
-e2 = tk.Entry(win)
-submitreddit = tk.Button(win, text="Submit")
+r5 = tk.Radiobutton(win, text="Hot", variable=rv, value=1, command=rv.set(value="Hot"))
+r6 = tk.Radiobutton(win, text="New", variable=rv, value=2, command=rv.set("New"))
+r7 = tk.Radiobutton(win, text="Top", variable=rv, value=3, command=rv.set("Top"))
+r8 = tk.Radiobutton(win, text="Controversial", variable=rv, value=4, command=rv.set("Controversial"))
+r9 = tk.Radiobutton(win, text="Rising", variable=rv, value=5, command=rv.set("Rising"))
+entryterm = tk.StringVar()
+entrysub = tk.StringVar()
+e1 = tk.Entry(win, textvariable=entryterm)
+e2 = tk.Entry(win, textvariable=entrysub)
+submitreddit = tk.Button(win, text="Submit", command=lambda: redditsearch(str(entryterm.get()), str(entrysub.get()), str(rv.get())))
 
 
 # reddit text entry field
@@ -57,8 +60,9 @@ t1 = tk.Label(win, text="Search")
 te1 = tk.Entry(win)
 t2 = tk.Label(win, text="")
 t5 = tk.Label(win, text="Sort results by")
-t3 = tk.Radiobutton(win, text="New", variable=tv, value=1, command=tv.set(1))
+t3 = tk.Radiobutton(win, text="Latest", variable=tv, value=1, command=tv.set(1))
 t4 = tk.Radiobutton(win, text="Top", variable=tv, value=2, command=tv.set(2))
+t5 = tk.Radiobutton(win, text="Mixed", variable=tv, value=3, command=tv.set(3))
 submittwit = tk.Button(win, text="Submit")
 
 
@@ -84,7 +88,8 @@ def twittertext():
     t5.grid(row=5, column=1)
     t3.grid(row=6, column=1)
     t4.grid(row=7, column=1)
-    submittwit.grid(row=7, column=2)
+    t5.grid(row=8, column=1)
+    submittwit.grid(row=9, column=2)
 
 
 # label
